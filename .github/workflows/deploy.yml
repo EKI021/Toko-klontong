@@ -28,5 +28,5 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           echo "Koneksi SSH ke container LXC berhasil!"
-          cd /path/to/project || exit 1
+          cd /path/asli/folder/projek_anda || exit 1
           git pull origin main
