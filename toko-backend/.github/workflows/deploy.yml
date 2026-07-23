@@ -1,0 +1,26 @@
+name: CI/CD Pipeline to LXD Container
+
+on:
+  push:
+    branches: [ "main" ] # Pipeline akan otomatis berjalan setiap ada push ke branch main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Deploy to Container via SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        port: ${{ secrets.SERVER_PORT }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          echo "Koneksi SSH ke container LXD berhasil!"
+          # Masukkan perintah tambahan di sini jika ingin melakukan pull kode atau restart docker
+          # Contoh: 
+          # cd /path/ke/project && git pull origin main
