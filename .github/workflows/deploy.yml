@@ -21,5 +21,8 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           echo "Koneksi SSH ke container LXD berhasil!"
-          # Tambahkan perintah deployment Anda di sini ke depannya
-          # Contoh: cd /path/project && git pull origin main
+          cd /path/to/project || exit 1
+          git pull origin main
+          # Jika perlu, restart server web setelah deployment:
+          # sudo systemctl restart apache2
+          # sudo systemctl restart nginx
