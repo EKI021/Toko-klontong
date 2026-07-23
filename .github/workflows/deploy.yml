@@ -27,6 +27,10 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          echo "Koneksi SSH ke container LXC berhasil!"
+          echo "Koneksi SSH ke server berhasil!"
+          # Jika folder belum ada, buat dan clone repository-nya otomatis
+          if [ ! -d "/root/Toko-klontong" ]; then
+            git clone https://github.com/EKI021/Toko-klontong.git /root/Toko-klontong
+          fi
           cd /root/Toko-klontong || exit 1
           git pull origin main
